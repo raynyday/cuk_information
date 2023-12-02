@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Catholic University of Korea</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #main-page {
+            background: url('https://cdn.news.unn.net/news/photo/202107/512084_313909_320.jpg') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        #scroll-indicator {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #arrow {
+            position: absolute;
+            bottom: 10px;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 5px 10px; 
+            border-radius: 5px; 
+        }
+
+        #content {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #contact-info {
+            font-size: 1.2em;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        #contact-info p {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-page" onclick="scrollToContent()">
+        <h1 style="font-size: 4em;">The Catholic University of Korea</h1>
+        <div id="arrow" onclick="goToMajorPage()">▼</div>
+    </div>
+
+    <script>
+        function scrollToContent() {
+            document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function goToMajorPage() {
+            window.location.href = 'major.html';
+        }
+    </script>
+</body>
+</html>
