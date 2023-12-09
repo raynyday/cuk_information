@@ -8,51 +8,190 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: "NanumSquare", sans-serif;
     }
 
     #banner {
-      height: 25vh; /* 25% of the viewport height */
-      background-color: #00274d; /* Navy Blue */
+      height: 25vh;
+      background-color: #00274d;
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative; /* Added to position buttons relative to the banner */
+      position: relative;
     }
 
     #content {
       padding: 20px;
-      margin-top: 20vh; /* Added margin to create space for the banner */
+      margin-top: 20vh;
     }
 
     #buttons {
       display: flex;
       justify-content: space-around;
-      position: absolute; /* Position buttons absolutely within the banner */
-      bottom: 0; /* Align buttons to the bottom of the banner */
-      width: 100%; /* Make buttons span the entire width of the banner */
-      background-color: #00274d; /* Navy Blue background for buttons */
-      z-index: 1; /* Ensure buttons appear above content */
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: #00274d;
+      z-index: 1;
     }
 
     .button {
-      flex: 1; /* Each button takes 25% of the screen width */
+      flex: 1;
       padding: 10px;
-      background-color: #00274d; /* Navy Blue */
+      background-color: #00274d;
       color: white;
       border: none;
       cursor: pointer;
-      transition: background-color 0.3s; /* Smooth color transition */
+      transition: background-color 0.3s;
     }
 
     .button:hover,
     .active {
-      background-color: #004080; /* Darker shade of blue on hover and when active */
+      background-color: #004080; 
+    }
+
+    #professorContent {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: flex-start; 
+    }
+
+    .card {
+      width: 23%;
+      margin: 1%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .empty-card {
+      width: 23%;
+      margin: 1%;
+      box-sizing: border-box;
+      visibility: hidden;
+    }
+
+    .card img {
+      width: 80%;
+      max-width: 100%;
+      border-radius: 8px; 
+    }
+
+    .card-description {
+      text-align: center;
+      padding: 10px; 
+    }    
+
+    
+    a {
+      text-decoration-line: none;
+    }
+    a:link {
+      color : rgb(0, 0, 0);
+    }
+    a:visited {
+      color : black;
+    }
+    a:hover {
+      color : rgb(138, 127, 230);
+    }
+    a:active {
+      color : green
+    }
+    
+    .study img{
+
+    width: 80%;
+    height: 80%;
+    max-width: 100%;
+    }
+
+    .back-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    }
+
+
+    .home-button {
+    position: fixed;
+    top: 10px;
+    right: 10px; /* Adjusted right position */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    }
+    
+    .back-button img,
+    .home-button img {
+    width: 30px; /* Adjust the size as needed */
+    }
+    
+    .login-button {
+    position: fixed;
+    top: 10px;
+    right: 60px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    }
+    .login-button img {
+    width: 30px; 
+    }
+    .icon {
+    filter: invert(1);
+    }
+
+    .add-button {
+      background-color: #a0ceff;
+      color: rgb(0, 0, 0);
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      margin-left: 40px;
+      margin-bottom: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .add-button:hover {
+      background-color: #1a4f3c;
+      color: rgb(255, 255, 255);
+
     }
   </style>
 </head>
+
 <body>
+
+
+  
+  <header>
+    <div class="button-container">
+      <button class="back-button" onclick="goBack()">
+        <img src="img\previous_icon.png" alt="Back to Previous Page">
+      </button>
+
+      <button class="home-button" onclick="goToMain()">
+        <img src="img\home_icon.png" alt="Go to Main Page">
+      </button>
+
+      <button class="login-button" onclick="toggleLogin()">
+        <img src="img\login_icon.png" alt="Go to Login Page">
+      </button>
+    </div>
+  </header>
+
+
+
   <div id="banner">
     <h1>인공지능학과</h1>
     <div id="buttons">
@@ -83,6 +222,9 @@
             <li>21세기 첨단 지식정보화 사회를 선도하는 세계 최고 수준의 AI 핵심인재 양성</li>
             <li>국제적 교류를 통해서 새로운 미래를 창조할 수 있는 인재 육성</li>
             <li>지역사회/국가/인류사회 번영에 공헌할 수 있는 헌신적 AI 전문인 육성</li>
+            <div class="study img">
+              <img src="./img/인공지능전공.jpg">
+            </div>
         </ul>
         <br>
         <h1>전공소개</h1>
@@ -101,68 +243,696 @@
                  빅데이터와 사물인터넷, 로봇공학과 자율주행 등에 대해 실습 중심으로 배울 수 있다. 또한 본 과정을 선택할 
                  시 전공선택을 석사 수강과목으로 인정함으로써 학/석사 연계 과정을 장려한다.
             </li>
+            <br>
+            <br>
         </ul>
         <br>
-
     </div>
     
     <div id="content2" style="display: none;">
-        <select id="professorYear" onChange="showProfessors()">
-            <option value="all">전체</option>
-            <option value="2023">2023</option>
-            <option value="2022">2022</option>
-            <!-- Add more years if needed -->
-        </select>
-    
-        <div id="professorContent">
-            <!-- Professor introduction content here -->
-            <!-- Add your professor introduction content, you can use the format similar to the photo album code provided earlier -->
-        </div>
+      <select id="professorYear" onChange="showProfessors()">
+          <option value="all" selected>전체</option>
+          <option value="2023">2023</option>
+          <option value="2021">2021</option>
+      </select>
+  
+      <div id="professorContent"></div>
+  </div>
+  <div id="content3" style="display: none;">
+  
+    <h4></h4>
+
+    <h3>교과과정</h3>
+    <div class="study img">
+      <img src="./img/AI교과과정.png">
     </div>
-    <div id="content3" style="display: none;"></div>
-    <div id="content4" style="display: none;"></div>
+  </div>
+  <div id="content4" style="display: none;"> 
+    <button class="add-button" onclick="goToAddNotice()">Add Notice</button>
+    <ul id="noticeList">
+    <!-- notice.py 를 이용해 크롤링 후 붙여넣기 진행 -->
+      <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=44210&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [2학년~] 2024학년도 1학기 복수전공/부전공 변경 안내새글
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=44149&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                2023 디지털인문학 및 인공지능윤리 겨울학교 개최 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=44210&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [2학년~] 2024학년도 1학기 복수전공/부전공 변경 안내새글
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=44149&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                2023 디지털인문학 및 인공지능윤리 겨울학교 개최 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=44058&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                2023-2학기 인공지능학과 간담회
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=43553&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [KISIA] 2023학년도 하반기 정보보호 취업박람회 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=43416&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [2023 메디칼 해커톤]공모전 참여 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=43350&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                인공지능학과 간담회 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=43119&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                제4회 동문강연 참여 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42930&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [학과 사업] 2차년도 2학기 학생주도 프로젝트 소모임 운영 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42895&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과 NLP Lab] 김강민 교수 연구팀, 한국건설기술연구원과 국가건설기준 관리 AI 프로그램 개발 착수
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42853&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                <2023년 가톨릭대학교-차세대융합기술연구원 공동 인공지능 세미나> 참가 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42835&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                <2023년 가을 가톨릭대학교 인공지능 세미나> 상세 프로그램 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42830&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                <신임교원 부임 안내> 고근수 교수
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42649&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                <2023년 가을 가톨릭대학교 인공지능 세미나> 참여 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42600&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                <인공지능학과 메타버스와 확장현실 여름학교> 참가신청 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42441&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                인공지능학과 석사과정 원현식(지도교수 김강민), ‘멀티모달 해시태그 추천 모델’ 논문 ICWS 2023 구두 발표
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42406&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [일반대학원] 2023학년도 1학기 연구지원금 및 학회발표지원금 신청 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42403&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [일반대학원] 2023학년도 2학기 복학 및 휴학 신청 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42394&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                <필독> 2023-2학기 컴프2, AI기초수학, 선형대수 수강 분반 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42385&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] KISIA 한국정보보호교육원 협회 채용공고 및 채용연계형 교육과정 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42368&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] 2023년 서울대학교 여름방학 데이터사이언스 Boot Camp 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42355&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] 2023학년도 2학기 전과 신청 안내 (선발모집 예정인원: 24명)
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42267&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                <인공지능학과 여름학교(산학연 기반 교육프로그램)> 참가신청 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42255&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] 제3회 가톨릭대학교 데이터분석 경진대회
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42178&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] KISA 2023 블록체인·핀테크 경진대회 BEST Challenge
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42169&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] XR 콘텐츠 개발자 양성 과정 안내 *7월 3일 개강, 선착순 모집*
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42083&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                <인공지능학과 여름학교(산학연 기반 교육프로그램)> 참여 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42057&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] 2023-1학기 인공지능학과 간담회(책거리 행사) 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42056&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] SW여성인재 역량강화 기본조성 교육 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42032&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] AI CONNECT 개최 AI 경진대회 안내 (AI 생성 이미지 판별 경진대회)
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=42007&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] KISIA_2023 AI보안 기술개발 교육과정 - 네트워크반 / 개인정보반 교육생 모집 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=41987&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [일반대학원] 2023학년도 1학기 학위논문 온라인 및 오프라인 제출 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=41947&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                2023학년도 2학기 복수전공 및 부전공 변경 신청 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=41895&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] 2023학년도 학술연구장학생 신청 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=41877&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [대학혁신지원사업] 2023-1학기 "교수 진로·취업 집중상담 주간 실시 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=41765&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [LINC3.0] 학생주도 프로젝트 소모임 신청안내[~5.29.(월) 마감]
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=40296&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                제2회 마인즈랩 마음톤 참가자 모집
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=40003&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                제 1회 가톨릭대학교 인공지능 콜로키움(CUK AI Colloquium 2022)
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=40002&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                학과사무실 이전 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=39985&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                <디자인씽킹과 데이터사이언스:캡스톤디자인>, 인공지능학과 공통 교과목입니다.
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=39828&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                방학중 SW·AI 교육 캠프 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=39574&Page=5&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                2022학년도 1학년 인공지능학과/데이터사이이너스학과 전공배정 온라인 설명회
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=39360&Page=5&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                2023학년도 1학기 부전공 신청/변경 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=39359&Page=5&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                2023학년도 1학기 복수전공 변경(제1전공심화로 변경 포함) 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=39352&Page=5&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                22학번 신입생 대상 '사교육 영향평가 보고서' 관련 설문
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=39331&Page=5&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [일반대학원 인공지능학과] 2022학년도 2학기 수업평가 실시 안내
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=39211&Page=5&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] 2022년도 가톨릭대학교 데이터분석 대회
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=39210&Page=5&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] 인공지능학과 및 데이터사이언스학과 경진대회
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=39104&Page=5&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] 2022년 데이터사이언스 멘토링 데이
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=39098&Page=5&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] 스마트종자배양장 (넙치, 돌돔) 데이터 해커톤
+            </div>
+        </a>
+    </li>
+    <br>
+    
+    
+    <li>
+        <a href="https://cukai.catholic.ac.kr/front/boardview.do?pkid=39052&Page=5&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=542&cmsDirPkid=5902&cmsLocalPkid=0">
+            <div class="text">
+                [인공지능학과] SNUH Medical AI Challenge 2022
+            </div>
+        </a>
+    </li>
+    <br>
+    
+
+    </ul>        
   </div>
 
-  <script>
-    function showContent(contentNumber) {
-      for (let i = 1; i <= 4; i++) {
-        const content = document.getElementById('content' + i);
-        const button = document.querySelector('.button:nth-child(' + i + ')');
-  
-        if (i === contentNumber) {
-          content.style.display = 'block';
-          button.classList.add('active');
-        } else {
-          content.style.display = 'none';
-          button.classList.remove('active');
+
+
+
+      <!-- 추가 페이지 (add_notice.html) -->
+  <div id="addNoticeContent" style="display: none;">
+    <h1>Add Notice</h1>
+    <form id="addNoticeForm">
+      <label for="noticeTitle">새로운 공지사항 제목:</label>
+      <input type="text" id="noticeTitle" name="noticeTitle" required>
+      <br>
+      <button type="button" onclick="submitNotice()">등록</button> 
+    </form>
+  </div>
+
+</div>
+
+
+
+
+
+<script>
+
+  function showContent(contentNumber) {
+    for (let i = 1; i <= 4; i++) {
+      const content = document.getElementById('content' + i);
+      const button = document.querySelector('.button:nth-child(' + i + ')');
+
+      if (i === contentNumber) {
+        content.style.display = 'block';
+        button.classList.add('active');
+        if (i===2){
+          showProfessors();
         }
+      } 
+      else {
+        content.style.display = 'none';
+        button.classList.remove('active');
       }
     }
-    function showProfessors() {
-        let year = document.getElementById('professorYear').value;
-        let professorContent = '';
+  }
 
-        if (year === 'all') {
-            // Display professors for all years
-            professorContent = `
-                <!-- Your professor introduction content for all years -->
-            `;
-        } else if (year === '2023') {
-            // Display professors for 2023
-            professorContent = `
-                <!-- Your professor introduction content for 2023 -->
-            `;
-        } else if (year === '2022') {
-            // Display professors for 2022
-            professorContent = `
-                <!-- Your professor introduction content for 2022 -->
-            `;
+  // 페이지 로드 시 초기로 보여질 콘텐츠를 설정
+  document.addEventListener('DOMContentLoaded', function () {
+    // 여기에서 초기로 보여줄 콘텐츠 번호 지정
+    const initialContentNumber = 1;
+    showContent(initialContentNumber);
+  });
+
+  function showProfessors() {
+    let year = document.getElementById('professorYear').value;
+    let professorContent = '';
+
+    const professorsData = {
+      'all' : [
+        { name: '정동화 교수님', field: '인공지능 / 뇌공학', location: 'T908', image: 'img/professor/정동화교수님.png' },
+        { name: '이오준 교수님', field: '인공지능 / 그래프신경망', location: 'T404', image: 'img/professor/이오준교수님.png' },
+        { name: '고근수 교수님', field: '인공지능 / 컴퓨터 비전', location: 'T810', image: 'img/professor/고근수교수님.png' },
+      ],
+
+      '2023': [
+        { name: '고근수 교수님', field: '인공지능 / 컴퓨터 비전', location: 'T810', image: 'img/professor/고근수교수님.png' },
+      ],
+
+      '2021': [
+      //   { name: '노상욱 교수님', field: '컴퓨터공학 / 인공지능', location: 'D421', image:  'img/professor/노상욱교수님.png' },
+      //   { name: '나건 교수님', field: '생체재료 / 약물전달시스템', location: 'NP310', image:  'img/professor/나건교수님.png' },
+      //   { name: '조형래 교수님', field: '경영학 / 경력관리', location: 'N224', image:  'img/professor/조형래교수님.png' },
+        { name: '정동화 교수님', field: '인공지능 / 뇌공학', location: 'T908', image:  'img/professor/정동화교수님.png' },
+        { name: '이오준 교수님', field: '인공지능 / 그래프신경망', location: 'T404', image: 'img/professor/이오준교수님.png' },
+      ],
+    }; 
+
+
+    if (year in professorsData) {
+      professorsData[year].forEach((professor, index) => {
+        professorContent += `
+          <div class="card">
+            <img src="${professor.image}">
+            <div class="card-description">
+              <h1>${professor.name}</h1>
+              <ul>
+                <li>연구분야: ${professor.field}</li>
+                <li>연구실 위치: ${professor.location}</li>
+              </ul>
+            </div>
+          </div>
+        `;
+
+        // Add an empty card for the remaining space if less than 4 professors
+        if (index === professorsData[year].length - 1 && professorsData[year].length % 4 !== 0) {
+          const emptyCardCount = 4 - (professorsData[year].length % 4);
+          for (let i = 0; i < emptyCardCount; i++) {
+            professorContent += '<div class="card empty-card"></div>';
+          }
         }
-
-        // Update the professorContent div
-        document.getElementById('professorContent').innerHTML = professorContent;
+      });
     }
-  </script>
-  
+
+    document.getElementById('professorContent').innerHTML = professorContent;
+  }
+    function goBack() {
+      window.history.back();
+    }
+
+    function goToMain() {
+      window.location.href = 'main.html';
+    }
+    function toggleLogin() {
+        window.location.href = 'login.html';
+      }
+
+
+    function goToAddNotice() {
+      // "학과소식" 탭 숨기기
+      document.getElementById('content4').style.display = 'none';
+      // "Add Notice" 페이지 보이기
+      document.getElementById('addNoticeContent').style.display = 'block';
+    }
+
+    function submitNotice() {
+      const title = document.getElementById('noticeTitle').value;
+
+      // 새로운 공지사항을 생성
+      const noticeItem = document.createElement('li');
+      noticeItem.innerHTML = `<a href="#">${title} </a> <br>`;
+
+      // 생성한 공지사항을 목록에 추가
+      document.getElementById('noticeList').appendChild(noticeItem);
+
+      // 입력 필드 초기화
+      document.getElementById('noticeTitle').value = '';
+
+      // "Add Notice" 페이지 숨기고 "학과소식" 탭 보이기
+      document.getElementById('addNoticeContent').style.display = 'none';
+      document.getElementById('content4').style.display = 'block';
+    }
+
+
+</script>
+
 </body>
 </html>

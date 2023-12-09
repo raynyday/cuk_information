@@ -27,9 +27,21 @@
         #scroll-indicator {
             font-size: 24px;
             margin-bottom: 20px;
+            }
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
         }
 
         #arrow {
+            animation: bounce 1s infinite;
             position: absolute;
             bottom: 10px;
             font-size: 30px;

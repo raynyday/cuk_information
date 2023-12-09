@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BMSW Department</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "NanumSquare", sans-serif;
+    }
+
+    #banner {
+      height: 25vh;
+      background-color: #004d2a;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    #content {
+      padding: 20px;
+      margin-top: 20vh;
+    }
+
+    #buttons {
+      display: flex;
+      justify-content: space-around;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: #004d2a;
+      z-index: 1;
+    }
+
+    .button {
+      flex: 1;
+      padding: 10px;
+      background-color: #004d2a;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover,
+    .active {
+      background-color: #008051; 
+    }
+
+    #professorContent {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: flex-start; /* Align items to the start of the cross-axis (top) */
+    }
+
+    .card {
+      width: 23%;
+      margin: 1%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .empty-card {
+      width: 23%;
+      margin: 1%;
+      box-sizing: border-box;
+      visibility: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 8px; /* Add border-radius for rounded corners */
+    }
+
+    .study img{
+
+      width: 80%;
+      height: 80%;
+      max-width: 100%;
+    }
+
+    .card-description {
+      text-align: center;
+      padding: 10px; /* Add padding for better spacing */
+    }    
+    a {
+      text-decoration-line: none;
+    /*   text-decoration-line: underline; */
+    /*   text-decoration-line: overline; */
+    /*   text-decoration-line: line-through; */
+    /*   text-decoration-line: underline line-through overline; */
+    }
+    a:link {
+      color : rgb(0, 0, 0);
+    }
+    a:visited {
+      color : black;
+    }
+    a:hover {
+      color : rgb(138, 127, 230);
+    }
+    a:active {
+      color : green
+    }
+
+    .back-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    }
+
+
+    .home-button {
+    position: fixed;
+    top: 10px;
+    right: 10px; /* Adjusted right position */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    }
+    
+    .back-button img,
+    .home-button img {
+    width: 30px; /* Adjust the size as needed */
+    }
+
+    
+    .login-button {
+    position: fixed;
+    top: 10px;
+    right: 60px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    }
+    .login-button img {
+    width: 30px; 
+    }
+
+
+    .icon {
+    filter: invert(1);
+    }
+
+    .add-button {
+      background-color: #a0ceff;
+      color: rgb(0, 0, 0);
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      margin-left: 40px;
+      margin-bottom: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .add-button:hover {
+      background-color: #1a4f3c;
+      color: rgb(255, 255, 255);
+
+    }
+  </style>
+</head>
+<body>
+
+  
+  <header>
+    <div class="button-container">
+      <button class="back-button" onclick="goBack()">
+        <img src="img\previous_icon.png" alt="Back to Previous Page">
+      </button>
+
+      <button class="home-button" onclick="goToMain()">
+        <img src="img\home_icon.png" alt="Go to Main Page">
+      </button>
+
+      <button class="login-button" onclick="toggleLogin()">
+        <img src="img\login_icon.png" alt="Go to Login Page">
+      </button>
+    </div>
+  </header>
+
+
+  <div id="banner">
+    <h1>바이오메디컬소프트웨어학과</h1>
+    <div id="buttons">
+      <button class="button" onclick="showContent(1)">학과 안내</button>
+      <button class="button" onclick="showContent(2)">교수진 소개</button>
+      <button class="button" onclick="showContent(3)">교과과정</button>
+      <button class="button" onclick="showContent(4)">학과소식</button>
+    </div>
+  </div>
+  <div id="content">
+    <div id="content1" style="display: none;">
+        <h1>의료 서비스 및 기술 지원에 필요한 차세대 
+          핵심 인재를 육성할 예정입니다.</h1>
+        <h5>미래의 국가 신성장동력인 바이오메디컬 분야를 대비하기 위해 신설된 학과입니다.
+          생물학, 수학, 컴퓨터공학 등의 다양한 분야를 융합할 수 있는 사고력 배양을 통해 
+          정밀 진단, 디지털 치료, 헬스케어 등현재 모바일헬스, 데이터과학, 의료인공지능, 디지털치료제, 스마트병원 등에서의
+          인재를 육성할 예정입니다.
+          새로운 헬스케어 관련 트랜드는 미래 육성사업 분야로서 사회적 수요가 증가하고 있습니다. 
+          최근 인공지능 기반 모바일 어플리케이션(APP)을 통해 환자의 투약효과를 극대화 시키고, 
+          기존의 약물을 새로운 질병에 적용되는지 추천알고리즘을 통해 시뮬레이션 해볼 수 있습니다.
+          이처럼 미래에는 디지털 기술을 바탕으로 미래 의료기술의 질적인 도약을 가져올 것으로 생각됩니다.</h5>
+        
+        <br>
+        <h3>교육목표</h3>
+        <ul>
+            <li>의료 빅데이터를 수집하고 데이터로부터 의미있는 정보를 추출하는 능력을 갖춘 인재 양성</li>
+            <li>4차 산업혁명 시대에 필요한 IT 및 바이오 산업 분야 간 융합 사고와 협업 능력을 갖춘 인재 양성</li>
+            <li>공학(인공지능)과 임상 지식(의료 및 헬스케어)을 겸비한 전문가 양성</li>
+            <li>의공학의 다양한 전문분야에 대해 방향을 제시하고 공학적인 문제들을 분석, 설계 및 구현할 수 있는 인재 양성</li>
+        </ul>
+        <br>
+        <h3>전공소개</h3>
+        <ul>
+            <li>바이오메디컬소프트웨어학은 생명공학, 컴퓨터공학, 수학을 모두 활용하여, 의료 빅데이터를 
+              통계적, 수학적, 컴퓨터공학적 기법으로 분석하는 분야입니다. 이를 효과적이고 방향성있게 
+              교육하기 위해, 바이오메디컬소프트웨어학과는 두가지 트랙으로 인재를 양성하고자 합니다.
+            </li>
+            <li>첫 번째는 디지털 헬스케어 트랙입니다. 디지털 헬스케어 트랙은 전통적인 의료기기 
+              뿐만아니라. 애플워치, 삼성 갤럭시, 개인이 측정할수 있는 EEG 기기, 디지털 치료기기 등의 
+              스마트 헬스케어기기에 대한 관심이 많습니다. 이러한 첨단기기를 위한 알고리즘, 어플리케이션 
+              등을 다룰 수 있는 인재를 양성하는 트랙입니다.
+            </li>
+            <li>두 번째는 의료 소프트웨어 공학 트랙입니다. 의료 소프트웨어 공학 트랙에서는 8개의 부속병원에 
+              방문하시는 환자분들의 질병들의 중요한 바이오마커를 찾거나, 질병의 진행을 예측할 수 있는 인공지능 
+              알고리즘 개발하는 의료인공지능을 다룹니다. 더불어 건강한 사람의 생물학적 메커니즘을 관찰 할 수 있습니다.
+            </li>
+        </ul>
+        <br>
+
+    </div>
+    <div id="content2" style="display: none;">
+        <select id="professorYear" onChange="showProfessors()">
+            <option value="all" selected>전체</option>
+            <option value="2023">2023</option>
+        </select>
+    
+        <div id="professorContent"></div>
+    </div>
+    <div id="content3" style="display: none;">
+    
+      <h4>교과과정으로는 1학년에는 수학, 생물학, 물리학, 화학, 그리고 컴퓨터 프로그래밍 등의 기초학문을 수강합니다.<br>
+        2학년에는 의공학 기초 학문과, 데이터 분석을 위한 수학, 이를 해결하기 위한 프로그래밍 방법에 대해 학습합니다.<br>
+        3학년에는 의료 데이터를 직접 인공지능 기법을 이용해 분석해 볼 수 있고,<br>
+        4학년 때는 학습했던 내용들을 실무적으로 적용할 수 있는 과목들을 수강할 수 있습니다.<br> </h4>
+
+      <h3>교과과정</h3>
+      <div class="study img">
+        <img  src="./img/BMSW교과과정.png">
+      </div>
+    </div>
+    <div id="content4" style="display: none;">
+        
+      <button class="add-button" onclick="goToAddNotice()">Add Notice</button>
+      <ul id="noticeList">
+         <li>
+          <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=44148&currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+            <div class="text">
+               바이오메디컬소프트웨어학과 겨울 연사 초청 특강 </div>
+            </a>
+          </li> 
+          <br>
+          <li>
+            <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42937&currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+              <div class="text">
+            	[학과 사업] 2차년도 2학기 학생주도 프로젝트 소모임 운영 안내 </div>
+              </a>
+          </li>
+          <br>
+         <li>
+          <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=43421&currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+            <div class="text">
+              [바이오메디컬소프트웨어학과] 2023학년도 사물함 신청 안내 </div>
+            </a>
+          </li>
+          <br>
+         <li>
+          <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=43207&currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+            <div class="text">
+              [공모전]디지털 헬스케어 『MEDICAL HACK 2023』 (~10.02) </div>
+            </a>
+          </li>  
+          <br>
+          <li>
+            <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=43121&currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+              <div class="text">
+                4회 동문강연 참여 안내</div>
+              </a>
+          </li>
+          <br>
+         <li>
+          <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42937&currentPage=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+            <div class="text">
+              [학과 사업] 2차년도 2학기 학생주도 프로젝트 소모임 운영 안내		
+            </div>
+            </a>
+          </li> 
+          <br>
+          <li>
+            <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42396&currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+              <div class="text">
+                [필독] 2023-2학기 컴프2, AI기초수학, 선형대수 수강 분반 안내		
+            </div>
+              </a>
+          </li>
+          <br>
+         <li>
+          <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42387&currentPage=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+            <div class="text">
+              		[바이오메디컬소프트웨어학과] KISIA 한국정보보호교육원 협회 채용공고 및 채용연계형 교육과정 안내		 </div>
+            </a>
+          </li> 
+          <br>
+          <li>
+            <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42370&currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+              <div class="text">
+                [바이오메디컬소프트웨어학과] 2023년 서울대학교 여름방학 데이터사이언스 Boot Camp 안내	</div>
+              </a>
+          </li>
+          <br>
+         <li>
+          <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42180&currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+            <div class="text">
+            	[바이오메디컬소프트웨어학과] KISA 2023 블록체인·핀테크 경진대회 BEST Challenge				
+            </div>
+            </a>
+          </li> 
+          <br>
+          <li>
+            <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42171&currentPage=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+              <div class="text">
+                [바이오메디컬소프트웨어학과] XR 콘텐츠 개발자 양성 과정 안내 *7월 3일 개강, 선착순 모집*	
+            </div>
+              </a>
+          </li>
+          <br>
+         <li>
+          <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42059&currentPage=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+            <div class="text">
+              [바이오메디컬소프트웨어학과] SW여성인재 역량강화 기본조성 교육 안내 </div>
+            </a>
+          </li> 
+          <br>
+          <li>
+            <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42010&currentPage=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+              <div class="text">
+                [바이오메디컬소프트웨어학과] KISIA_2023 AI보안 기술개발 교육과정 - 네트워크반 / 개인정보반 교육생 모집 안내	</div>
+              </a>
+          </li>
+          <br>
+          <li>
+            <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=41952&currentPage=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+              <div class="text">
+                    [바이오메디컬소프트웨어학과] 2023-2학기 복수전공/부전공(제1전공심화로 변경 포함) 변경 신청 안내</div>
+              </a>
+            </li> 
+            <br>
+            <li>
+              <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=41920&currentPage=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+                <div class="text">
+                  [바이오메디컬소프트웨어학과] 2023학년도 학술연구장학생 신청 안내	</div>
+                </a>
+            </li>
+            <br>
+           <li>
+            <a href="https://www.youtube.com/watch?v=nObJeNNZ7dA">
+              <div class="text">
+                바이오메디컬소프트웨어학과 학과소개영상				
+              </div>
+              </a>
+            </li> 
+            <br>
+            <li>
+              <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=41570&currentPage=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+                <div class="text">
+                  2023학년도 신설 바이오메디컬소프트웨어학과 신입생 장학제도 안내
+              </div>
+                </a>
+            </li>
+            <br>
+           <li>
+            <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=41569&currentPage=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=759&cmsDirPkid=6981&cmsLocalPkid=0">
+              <div class="text">
+                가톨릭대 2023 '바이오메디컬소프트웨어' 'IT파이낸스' 2개 학과 신설 </div>
+              </a>
+            </li>
+        </ul>
+    </div>
+
+
+
+      <!-- 추가 페이지 (add_notice.html) -->
+    <div id="addNoticeContent" style="display: none;">
+      <h1>Add Notice</h1>
+      <form id="addNoticeForm">
+        <label for="noticeTitle">새로운 공지사항 제목:</label>
+        <input type="text" id="noticeTitle" name="noticeTitle" required>
+        <br>
+        <button type="button" onclick="submitNotice()">등록</button> 
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+
+    
+    // 페이지 로드 시 초기로 보여질 콘텐츠를 설정
+    document.addEventListener('DOMContentLoaded', function () {
+    // 여기에서 초기로 보여줄 콘텐츠 번호 지정
+    const initialContentNumber = 1;
+    showContent(initialContentNumber);
+  });
+
+    function showContent(contentNumber) {
+      for (let i = 1; i <= 4; i++) {
+        const content = document.getElementById('content' + i);
+        const button = document.querySelector('.button:nth-child(' + i + ')');
+  
+        if (i === contentNumber) {
+          content.style.display = 'block';
+          button.classList.add('active');
+
+
+          if (i == 2){
+            showProfessors()
+          }
+        } else {
+          content.style.display = 'none';
+          button.classList.remove('active');
+        }
+      }
+    }
+    
+    // 페이지 로드 시 초기로 보여질 콘텐츠를 설정
+    document.addEventListener('DOMContentLoaded', function () {
+    // 여기에서 초기로 보여줄 콘텐츠 번호 지정
+    const initialContentNumber = 1;
+    showContent(initialContentNumber);
+  });
+    function showProfessors() {
+      let year = document.getElementById('professorYear').value;
+      let professorContent = '';
+  
+      const professorsData = {
+        'all' : [
+          { name: '이민지 교수님', field: '뇌공학 / 의료 인공지능', location: 'T203', image: 'img/professor/이민지교수님.png' },
+        ],
+
+        '2023': [
+          { name: '이민지 교수님', field: '뇌공학 / 의료 인공지능', location: 'T203', image: 'img/professor/이민지교수님.png' },
+        ],
+      };
+  
+      if (year in professorsData) {
+        professorsData[year].forEach((professor, index) => {
+          professorContent += `
+            <div class="card img">
+              <img src="${professor.image}">
+              <div class="card-description">
+                <h1>${professor.name}</h1>
+                <ul>
+                  <li>연구분야: ${professor.field}</li>
+                  <li>연구실 위치: ${professor.location}</li>
+                </ul>
+              </div>
+            </div>
+          `;
+  
+          if (index === professorsData[year].length - 1 && professorsData[year].length % 4 !== 0) {
+            const emptyCardCount = 4 - (professorsData[year].length % 4);
+            for (let i = 0; i < emptyCardCount; i++) {
+              professorContent += '<div class="card empty-card"></div>';
+            }
+          }
+        });
+      }
+  
+      document.getElementById('professorContent').innerHTML = professorContent;
+    }
+      function goBack() {
+        window.history.back();
+      }
+  
+      function goToMain() {
+        window.location.href = 'main.html';
+      }
+      
+      function toggleLogin() {
+        window.location.href = 'login.html';
+      }
+
+
+
+      
+    function goToAddNotice() {
+      // "학과소식" 탭 숨기기
+      document.getElementById('content4').style.display = 'none';
+      // "Add Notice" 페이지 보이기
+      document.getElementById('addNoticeContent').style.display = 'block';
+    }
+
+    function submitNotice() {
+      const title = document.getElementById('noticeTitle').value;
+
+      // 새로운 공지사항을 생성
+      const noticeItem = document.createElement('li');
+      noticeItem.innerHTML = `<a href="#">${title} </a> <br>`;
+
+      // 생성한 공지사항을 목록에 추가
+      document.getElementById('noticeList').appendChild(noticeItem);
+
+      // 입력 필드 초기화
+      document.getElementById('noticeTitle').value = '';
+
+      // "Add Notice" 페이지 숨기고 "학과소식" 탭 보이기
+      document.getElementById('addNoticeContent').style.display = 'none';
+      document.getElementById('content4').style.display = 'block';
+    }
+
+  </script>
+  
+</body>
+</html>

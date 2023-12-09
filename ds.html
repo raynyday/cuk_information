@@ -1,11 +1,845 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DS Department</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "NanumSquare", sans-serif;
+    }
+
+    #banner {
+      height: 25vh;
+      background-color: rgb(109, 63, 184);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    #content {
+      padding: 20px;
+      margin-top: 20vh;
+    }
+
+    #buttons {
+      display: flex;
+      justify-content: space-around;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: rgb(109, 63, 184);
+      z-index: 1;
+    }
+
+    .button {
+      flex: 1;
+      padding: 10px;
+      background-color: rgb(109, 63, 184);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover,
+    .active {
+      background-color: rgb(153, 87, 233); 
+    }
+
+    #professorContent {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: flex-start; /* Align items to the start of the cross-axis (top) */
+    }
+
+    .card {
+      width: 23%;
+      margin: 1%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .empty-card {
+      width: 23%;
+      margin: 1%;
+      box-sizing: border-box;
+      visibility: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 8px; /* Add border-radius for rounded corners */
+    }
+
+    .card-description {
+      text-align: center;
+      padding: 10px; /* Add padding for better spacing */
+    }    
+
+    
+    .study img{
+
+    width: 80%;
+    height: 80%;
+    max-width: 100%;
+    }
+    
+    a {
+      text-decoration-line: none;
+    }
+    a:link {
+      color : rgb(0, 0, 0);
+    }
+    a:visited {
+      color : black;
+    }
+    a:hover {
+      color : rgb(138, 127, 230);
+    }
+    a:active {
+      color : green
+    }
+
+    .back-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    }
+
+
+    .home-button {
+    position: fixed;
+    top: 10px;
+    right: 10px; 
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    }
+
+    .back-button img,
+    .home-button img {
+    width: 30px; 
+    }
+    .login-button {
+    position: fixed;
+    top: 10px;
+    right: 60px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    }
+    .login-button img {
+    width: 30px; 
+    }
+    .icon {
+    filter: invert(1);
+    }
+
+    
+
+    .add-button {
+      background-color: #a0ceff;
+      color: rgb(0, 0, 0);
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      margin-left: 40px;
+      margin-bottom: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .add-button:hover {
+      background-color: #1a4f3c;
+      color: rgb(255, 255, 255);
+
+    }
+
+  </style>
 </head>
 <body>
-    <h1>DS</h1>
+  
+  <header>
+    <div class="button-container">
+      <button class="back-button" onclick="goBack()">
+        <img src="img\previous_icon.png" alt="Back to Previous Page">
+      </button>
+
+      <button class="home-button" onclick="goToMain()">
+        <img src="img\home_icon.png" alt="Go to Main Page">
+      </button>
+
+      <button class="login-button" onclick="toggleLogin()">
+        <img src="img\login_icon.png" alt="Go to Login Page">
+      </button>
+    </div>
+  </header>
+
+
+  <div id="banner">
+    <h1>데이터사이언스학과</h1>
+    <div id="buttons">
+      <button class="button" onclick="showContent(1)">학과 안내</button>
+      <button class="button" onclick="showContent(2)">교수진 소개</button>
+      <button class="button" onclick="showContent(3)">교과과정</button>
+      <button class="button" onclick="showContent(4)">학과소식</button>
+    </div>
+  </div>
+  <div id="content">
+    <div id="content1" style="display: none;">
+        <h1>데이터 기술과 도메인 전문성을 기준으로 다양한 스펙트럼의 인력을 양성하는데 힘쓸 것입니다.</h1>
+        <h5>다보스포럼에서는 4차 산업 혁명은 데이터 혁명으로 여러 학문 분야의 융복합을 통해 발전해 나가는 기술 혁신의 패러다임이며 
+          모든 기기들의 디지털화로 인한 데이터 기반의 기술 혁명이 이루어질 것이라 전망하였습니다. 데이터사이언스는 데이터에서 
+          무궁무진한 가치를 찾아내고 이를 통해 세상을 한층 살기 좋은 곳으로 발전시키는데 기여할 수 있는 학문입니다. 데이터의 활용은 
+          산업 각 분야에서 인간의 노동력과 비용을 감소시키고, 인간의 역량을 증강시켜 불가능했던 많은 것들을 가능하게 만들고 있습니다.
+          본 데이터사이언스학과는 빅데이터시대를 선도하기 위하여 21세기 선도형 정보과학을 바탕으로 AI빅데이터분석, IT통계, 정보통계분석과 
+          응용 등의 영역을 특성화하여 전문가를 양성하고 있습니다. 최근, 데이터사이언스 전문 인력에 대한 수요가 증가함에 따라 데이터사이언스 
+          전문 인력의 다양성도 높아지고 있습니다. 본 대학은 데이터사이언티스트, 데이터엔지니어, 머신러닝 엔지니어, 데이터 애널리스트 등 
+          데이터 기술과 도메인 전문성을 기준으로 다양한 스펙트럼의 인력을 양성하는데 힘쓸 것입니다. 데이터사이언스에 꿈을 가지셨다면, 
+          가톨릭대에서 그 꿈을 펼치십시오.
+        </h4>
+        <br>
+        <h1>교육목표</h1>
+        <ul>
+            <li>사회 현안 문제를 해결할 수 있는 창의 융합형 공학자 양성</li>
+            <li>21세기 첨단 지식정보화 사회를 선도하는 세계 최고 수준의 AI 핵심인재 양성</li>
+            <li>국제적 교류를 통해서 새로운 미래를 창조할 수 있는 인재 육성</li>
+            <li>지역사회/국가/인류사회 번영에 공헌할 수 있는 헌신적 AI 전문인 육성</li>
+        </ul>
+        <br>
+        <h1>전공소개</h1>
+        <ul>
+            <li>본 대학의 데이터사이언스학과는 4차 산업혁명 시대에서 핵심적인 역할을 할 데이터사이언티스트를 
+              육성하기 위하여 설립되었습니다. 데이터사이언스학과는 데이터의 수집, 저장, 처리, 분석을 위한 
+              이론적 교육과 융합을 통하여 분석의 결과를 적용할 수 있는 실무적 교육으로 구성되었습니다.
+              특히, 본 대학의 데이터사이언스학과는 공학적 데이터 분석 역량과 경영학적 데이터 활용 역량을
+              겸비한 데이터사이언티스트를 양성하는 데 주 목적이 있습니다.
+            </li>
+            <div class="study img">
+              <img src="./img/데사전공.png">
+            </div>
+        </ul>
+        <br>
+
+    </div>
+    <div id="content2" style="display: none;">
+        <select id="professorYear" onChange="showProfessors()">
+            <option value="all">전체</option>
+            <option value="2022">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+        </select>
+    
+        <div id="professorContent"></div>
+    </div>
+    <div id="content3" style="display: none;">
+    
+      <h3>DS 교과과정</h3>
+      <div class="study img">
+        <img  src="./img/DS교과과정.png">
+      </div>
+
+    </div>
+    <div id="content4" style="display: none;">
+      <button class="add-button" onclick="goToAddNotice()">Add Notice</button>
+      <ul id="noticeList">
+        
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=40001&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          제 1회 가톨릭대학교 인공지능 콜로키움(CUK AI Colloquium 2022)
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=36965&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          데이터사이언스학과 김강민 교수님이 월간인물 잡지에 소개되셨습니다.
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=44212&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [2학년~] 2024학년도 1학기 복수전공/부전공 변경 안내새글
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=43120&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          제4회 동문강연 참여 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42932&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [학과 사업] 2차년도 2학기 학생주도 프로젝트 소모임 운영 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42896&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [인공지능학과 NLP Lab] 김강민 교수 연구팀, 한국건설기술연구원과 국가건설기준 관리 AI 프로그램 개발 착수
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42440&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          인공지능학과 석사과정 원현식(지도교수 김강민), ‘멀티모달 해시태그 추천 모델’ 논문 ICWS 2023 구두 발표
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42395&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          <필독> 2023-2학기 컴프2, AI기초수학, 선형대수 수강 분반 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42386&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] KISIA 한국정보보호교육원 협회 채용공고 및 채용연계형 교육과정 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42369&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] 2023년 서울대학교 여름방학 데이터사이언스 Boot Camp 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42179&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] KISA 2023 블록체인·핀테크 경진대회 BEST Challenge
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42170&Page=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] XR 콘텐츠 개발자 양성 과정 안내 *7월 3일 개강, 선착순 모집*
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=42058&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] SW여성인재 역량강화 기본조성 교육 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=41950&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          2023학년도 2학기 복수전공/부전공(제1전공심화로 변경 포함) 변경 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=41896&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] 2023학년도 학술연구장학생 신청 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=40295&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          제2회 마인즈랩 마음톤 참가자 모집
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=40001&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          제 1회 가톨릭대학교 인공지능 콜로키움(CUK AI Colloquium 2022)
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=40000&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          학과사무실 이전 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=39826&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          방학중 SW·AI 교육 캠프 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=39634&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          2022년도 2학기 취득성적 포기 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=39573&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          2022학년도 1학년 데이터사이언스/인공지능학과 전공배정 온라인 설명회
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=39491&Page=2&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          2022학년도 1학년 전공배정 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=39376&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          2023학년도 1학기 복수전공 변경(제1전공심화로 변경 포함) 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=39375&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          2023학년도 1학기 부전공 신청/변경 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=39213&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] 2022년도 가톨릭대학교 데이터분석 경진대회
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=39212&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] 인공지능학과 및 데이터사이언스학과 경진대회
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=39103&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] 2022년 데이터사이언스 멘토링 데이
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=39099&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] 스마트종자배양장 (넙치, 돌돔) 데이터 해커톤
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=39053&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] SNUH Medical AI Challenge 2022
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=38993&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] 2022년 폭력예방교육 이수 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=38499&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          [데이터사이언스학과] 2022학년도 2학기 사물함 신청 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=37847&Page=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          데이터사이언스학과 김강민 교수, 한국연구재단 최초혁신실험실 사업 선정
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=36965&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          데이터사이언스학과 김강민 교수님이 월간인물 잡지에 소개되셨습니다.
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=36773&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          2022-1학기 지도교수 상담 공지 [필수]
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=36627&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          2022 1학기 사물함 신청
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=36559&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          데이터사이언스학과 김강민 교수, 한국연구재단 우수신진연구 과제 선정
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=36459&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          가톨릭대학교 데이터사이언스학과 및 인공지능학과 진진시스템 MOU체결
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=36186&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          인공지능학과/데이터사이언스학과 성적평가 기준에 대한 입장 정리
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=35942&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          자연어처리 (NLP) 연구실 전일제 대학원생 모집
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=35309&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          2021-동계 PBL(파이썬) 집중과정 신청 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=35208&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          NLP 연구실 연구원 캡스톤디자인 대회 대상 수상
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=35106&Page=4&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          제4회 가톨릭대학교 데이터사이언스 포럼 「의료 인공지능」다시보기 링크 안내
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=34655&Page=5&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          자연어처리 연구실 전일제 연구원 모집
+      </div>
+  </a>
+</li>
+<br>
+
+
+<li>
+  <a href="https://cukadmin.catholic.ac.kr/front/boardview.do?pkid=34654&Page=5&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=658&cmsDirPkid=6761&cmsLocalPkid=0">
+      <div class="text">
+          제1회 가톨릭대학교 인공지능 및 데이터사이언스 경진대회
+      </div>
+  </a>
+</li>
+<br>
+
+      </ul>
+
+    </div>
+
+
+    
+
+        <!-- 추가 페이지 (add_notice.html) -->
+    <div id="addNoticeContent" style="display: none;">
+      <h1>Add Notice</h1>
+      <form id="addNoticeForm">
+        <label for="noticeTitle">새로운 공지사항 제목:</label>
+        <input type="text" id="noticeTitle" name="noticeTitle" required>
+        <br>
+        <button type="button" onclick="submitNotice()">등록</button> 
+      </form>
+    </div>
+    
+  </div>
+
+
+
+
+
+
+  <script>
+
+      
+    // 페이지 로드 시 초기로 보여질 콘텐츠를 설정
+    document.addEventListener('DOMContentLoaded', function () {
+    // 여기에서 초기로 보여줄 콘텐츠 번호 지정
+    const initialContentNumber = 1;
+    showContent(initialContentNumber);
+  });
+
+
+    function showContent(contentNumber) {
+      for (let i = 1; i <= 4; i++) {
+        const content = document.getElementById('content' + i);
+        const button = document.querySelector('.button:nth-child(' + i + ')');
+  
+        if (i === contentNumber) {
+          content.style.display = 'block';
+          button.classList.add('active');
+          if( i == 2 ){
+            showProfessors()
+          }
+        } else {
+          content.style.display = 'none';
+          button.classList.remove('active');
+        }
+      }
+    }
+  
+    function showProfessors() {
+      let year = document.getElementById('professorYear').value;
+      let professorContent = '';
+  
+      const professorsData = {
+        'all' : [
+          { name: '김강민 교수님', field: '인공지능 / 자연어처리', location: 'T304', image: 'img/professor/김강민교수님.png' },
+          { name: '장재연 교수님', field: '데이터 사이언스 / 산업 데이터 분석', location: 'T103', image: 'img/professor/장재연교수님.png' },
+          { name: '신유진 교수님', field: '인공지능 기반 데이터사이언스', location: 'T405', image: 'img/professor/신유진교수님.png' },
+        ],
+
+        '2023': [
+          { name: '신유진 교수님', field: '인공지능 기반 데이터사이언스', location: 'T405', image: 'img/professor/신유진교수님.png' },
+        ],
+
+        '2022': [
+            { name: '장재연 교수님', field: '데이터 사이언스 / 산업 데이터 분석', location: 'T103', image: 'img/professor/장재연교수님.png' },
+            { name: '김강민 교수님', field: '인공지능 / 자연어처리', location: 'T304', image: 'img/professor/김강민교수님.png'},
+
+        ],
+
+      };
+  
+      if (year in professorsData) {
+        professorsData[year].forEach((professor, index) => {
+          professorContent += `
+            <div class="card">
+              <img src="${professor.image}">
+              <div class="card-description">
+                <h1>${professor.name}</h1>
+                <ul>
+                  <li>연구분야: ${professor.field}</li>
+                  <li>연구실 위치: ${professor.location}</li>
+                </ul>
+              </div>
+            </div>
+          `;
+  
+          if (index === professorsData[year].length - 1 && professorsData[year].length % 4 !== 0) {
+            const emptyCardCount = 4 - (professorsData[year].length % 4);
+            for (let i = 0; i < emptyCardCount; i++) {
+              professorContent += '<div class="card empty-card"></div>';
+            }
+          }
+        });
+      }
+
+      document.getElementById('professorContent').innerHTML = professorContent;
+    }
+      function goBack() {
+        window.history.back();
+      }
+  
+      function goToMain() {
+        window.location.href = 'main.html';
+      }
+      
+      function toggleLogin() {
+        window.location.href = 'login.html';
+      }
+
+      
+    function goToAddNotice() {
+      // "학과소식" 탭 숨기기
+      document.getElementById('content4').style.display = 'none';
+      // "Add Notice" 페이지 보이기
+      document.getElementById('addNoticeContent').style.display = 'block';
+    }
+
+    function submitNotice() {
+      const title = document.getElementById('noticeTitle').value;
+
+      // 새로운 공지사항을 생성
+      const noticeItem = document.createElement('li');
+      noticeItem.innerHTML = `<a href="#">${title} </a> <br>`;
+
+      // 생성한 공지사항을 목록에 추가
+      document.getElementById('noticeList').appendChild(noticeItem);
+
+      // 입력 필드 초기화
+      document.getElementById('noticeTitle').value = '';
+
+      // "Add Notice" 페이지 숨기고 "학과소식" 탭 보이기
+      document.getElementById('addNoticeContent').style.display = 'none';
+      document.getElementById('content4').style.display = 'block';
+    }
+
+    
+  </script>
+  
 </body>
 </html>

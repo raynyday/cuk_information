@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+  <style>
+    /* Add your login form styles here */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #2196F3, #4CAF50, #E91E63); /* Gradient background with blue, green, and pink */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    .login-container h1 {
+      color: #202584; 
+      margin-bottom: 20px;
+    }
+
+    .login-container h2 {
+      color: #E91E63; 
+      margin-bottom: 20px;
+    }
+
+    .login-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .login-form input {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #E91E63; /* Pink border */
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .login-form button {
+      background-color: #4CAF50; /* Green button color */
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .login-form button:hover {
+      background-color: #45a049; /* Darker green on hover */
+    }
+    .back-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    }
+
+
+    .home-button {
+    position: fixed;
+    top: 10px;
+    right: 10px; /* Adjusted right position */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    }
+    
+    .back-button img,
+    .home-button img {
+    width: 30px; /* Adjust the size as needed */
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>Welcome to The Catholic University of Korea</h1>
+    <h2>Login</h2>
+    <form class="login-form" onsubmit="return loginUser()">
+      <input type="text" placeholder="Username" id="username" required>
+      <input type="password" placeholder="Password" id="password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  <div>
+    <button class="back-button" onclick="goBack()">
+      <img src="img\previous_icon.png" alt="Back to Previous Page">
+    </button>
+
+    <button class="home-button" onclick="goToMain()">
+      <img src="img\home_icon.png" alt="Go to Main Page">
+    </button>
+  </div>
+
+
+  <script>
+    function loginUser() {
+      // Implement your login logic here
+      // For simplicity, let's just prevent the form from submitting
+      return false;
+    }
+    function goBack() {
+      window.history.back();
+    }
+
+    function goToMain() {
+      window.location.href = 'main.html';
+    }
+  </script>
+</body>
+</html>
